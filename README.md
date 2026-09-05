@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sabine & Oak — demo realtor
 
-## Getting Started
-
-First, run the development server:
+Sitio brochure demo de una brokerage inmobiliaria boutique en Austin, TX.
+Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS 4 · framer-motion.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev     # http://localhost:3000
+npm run build   # 24 rutas estáticas (SSG)
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Qué hay
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Ruta | Contenido |
+|---|---|
+| `/` | Hero slider 100vh, marquee de barrios, about, cifras animadas, listings apilados (StackingCards), barrios (ExpandingCards), video en lightbox, galería de ladrillo en parallax a sangre (BrickParallaxGallery, con lightbox), proceso, testimonios, blog, newsletter, formulario |
+| `/listings`, `/listings/[slug]` | Grid con filtros y orden · ficha con carrusel + lightbox, datos, video tour, agente y formulario sticky |
+| `/neighborhoods` | Bento con reveal al hover + ficha larga por barrio (anclas `#slug`) |
+| `/gallery` | Parallax de ladrillo + 5 galerías masonry **balanceadas** (todas las columnas cierran en la misma línea, sin huecos al pie) con lightbox a pantalla completa |
+| `/blog`, `/blog/[slug]` | Journal · post a 2 columnas: índice sticky que sigue el scroll + "Share this" (Facebook, X, LinkedIn, Reddit, copiar, email) |
+| `/about`, `/contact` | Equipo, valores, manifiesto con scroll, oficina en video · formulario, mapa, FAQ |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Estructura
 
-## Learn More
+```
+src/
+  app/                    rutas (App Router) + globals.css (tokens, fuentes, utilidades)
+  components/library/     componentes copiados de ~/Projects/ComponentsLibrary y adaptados
+  components/site/        header, footer, logo, lightbox, video-poster, forms, blog (toc, share, body)…
+  data/                   contenido: images, listings, neighborhoods, agents, testimonials, posts, galleries
+  lib/site.ts             identidad, nav, contacto
+public/brand/             mark.svg (header/favicon) y emblem.svg (footer), generados con Recraft V3 SVG vía Replicate
+public/video/             mp4 de muestra para el video local
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Convenciones
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Ancho de contenido 1600px** (`max-w-[100rem]`). Header y footer son full-width; su contenido respeta ese ancho. Las bandas con fondo van a sangre y el contenido dentro respeta el ancho.
+- **Tokens**: los componentes de la librería usan `ink / paper / bone / amber…`; en `globals.css` se remapean a la paleta del proyecto (pino, caliza, río). No inventar colores nuevos.
+- `.eyebrow` está remapeado a cursiva Fraunces (en la librería es mono en mayúsculas).
+- **Imágenes**: Unsplash vía `remotePatterns` (solo demo). Todos los IDs de `src/data/images.ts` están verificados.
+- **Marca**: los SVG de `public/brand` se usan como `mask-image` con `currentColor` (`.brand-mark`, `.brand-emblem`), así sirven en claro y oscuro con un solo archivo.
+- **Accesibilidad**: contrastes AA verificados en los tokens, skip link, foco visible, lightboxes con `role="dialog"` + foco atrapado + Escape, labels sr-only en formularios, `prefers-reduced-motion` desactiva autoplay, marquee y parallax.
+- **MasonryGallery** reparte las fotos en columnas flex con heurística LPT: el conjunto forma siempre un rectángulo completo; cada foto se estira como máximo un ~5 % respecto a su proporción declarada.
+- **Video**: `VideoPoster` acepta `{ provider: "youtube" | "vimeo" | "file" }`; siempre poster + botón de play custom, reproduce en lightbox.
+- Los formularios son solo UI (muestran confirmación); conectar un backend en `src/components/site/forms.tsx`.

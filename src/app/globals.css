@@ -1,26 +1,209 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+  Sabine & Oak — sistema de tokens.
+  ---------------------------------
+  Los componentes de la librería usan los nombres de rol ink / paper / bone /
+  amber… Aquí se remapean a la paleta del proyecto (no se renombran):
+
+    ink / ink-2 / ink-soft  → pino (fondos oscuros, texto principal, texto suave)
+    paper / paper-2         → caliza (fondos claros, base y alterno)
+    bone                    → caliza clara SOBRE fondos pino
+    amber / -deep / -soft   → río (acento: base, sobre claro, sobre oscuro)
+    rec                     → sol (acento secundario: pills "sold", avisos)
+
+  Contrastes verificados (WCAG AA): ink-soft/paper 6.4:1 · amber-deep/paper
+  5.6:1 · amber-soft/ink 9+ · ink/amber (botones) 5.6:1.
+*/
+@theme {
+  --color-ink: #10231f;
+  --color-ink-2: #183129;
+  --color-ink-soft: #4b5a54;
+  --color-paper: #f1f0eb;
+  --color-paper-2: #e6e3da;
+  --color-bone: #f4f2ec;
+  --color-amber: #2fa892;
+  --color-amber-deep: #146b5c;
+  --color-amber-soft: #8fdac9;
+  --color-rec: #e0a83a;
+
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-figtree);
+  --font-mono: var(--font-plex-mono);
+
+  --shadow-card: 0 24px 60px -30px rgba(16, 35, 31, 0.35);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-figtree), system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--color-amber);
+  color: var(--color-ink);
+}
+
+/* Fraunces: eje óptico + suavidad para que los titulares grandes respiren. */
+.font-display {
+  font-variation-settings: "opsz" 144, "SOFT" 40;
+}
+
+/*
+  Eyebrow — en la librería es una etiqueta mono en mayúsculas; aquí se
+  remapea a una línea en cursiva serif con tono de río. Cambia la voz de todos
+  los componentes sin tocar su código.
+*/
+.eyebrow {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.1rem;
+  letter-spacing: 0;
+  text-transform: none;
+  font-variation-settings: "opsz" 24, "SOFT" 60;
+}
+
+/* Textura de ruido para bandas oscuras (la usa ExpandingCards). */
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-amber);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Hero a viewport completo (100vh con fallback a svh en móvil). */
+.hero-vh {
+  height: 100vh;
+  height: 100svh;
+  min-height: 34rem;
+}
+
+/* Marca vectorial monocroma: el SVG se usa como máscara y el color lo da
+   currentColor — un solo archivo sirve en claro y oscuro. */
+.brand-mark {
+  display: inline-block;
+  background-color: currentColor;
+  mask: url("/brand/mark.svg") center / contain no-repeat;
+  -webkit-mask: url("/brand/mark.svg") center / contain no-repeat;
+}
+.brand-emblem {
+  display: inline-block;
+  background-color: currentColor;
+  mask: url("/brand/emblem.svg") center / contain no-repeat;
+  -webkit-mask: url("/brand/emblem.svg") center / contain no-repeat;
+}
+
+/* Entrada fade-up (stagger por animation-delay). */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-fade-up {
+  animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Marquee horizontal en loop (dos copias del contenido, se desplaza -50%). */
+@keyframes marquee-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee-x var(--marquee-duration, 28s) linear infinite;
+}
+
+/* Barra de progreso del hero (se reinicia por key en cada slide). */
+@keyframes hero-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+.animate-hero-progress {
+  transform-origin: left;
+  animation: hero-progress var(--hero-interval, 6.5s) linear both;
+}
+
+/* Cuerpo de los posts del blog. */
+.prose-post > p {
+  margin-top: 1.25rem;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-ink-soft);
+}
+.prose-post > p:first-child {
+  margin-top: 0;
+  font-size: 1.3rem;
+  color: var(--color-ink);
+}
+.prose-post > h2 {
+  margin-top: 3rem;
+  scroll-margin-top: 7rem;
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: clamp(1.7rem, 2.4vw, 2.2rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+.prose-post > h3 {
+  margin-top: 2.25rem;
+  scroll-margin-top: 7rem;
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.prose-post > ul {
+  margin-top: 1.25rem;
+  padding-left: 1.4rem;
+  list-style: disc;
+  color: var(--color-ink-soft);
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+.prose-post > ul > li + li {
+  margin-top: 0.5rem;
+}
+.prose-post > ul > li::marker {
+  color: var(--color-amber-deep);
+}
+
+/* Movimiento reducido: sin autoplay visual, sin parallax, sin marquee. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-marquee,
+  .animate-fade-up,
+  .animate-hero-progress {
+    animation: none !important;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

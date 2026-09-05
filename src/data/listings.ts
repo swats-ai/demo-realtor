@@ -1,0 +1,369 @@
+import { img } from "./images";
+
+export type VideoSource =
+  | { provider: "youtube"; id: string; poster?: string }
+  | { provider: "vimeo"; id: string; poster?: string }
+  | { provider: "file"; src: string; poster: string };
+
+export type Listing = {
+  slug: string;
+  name: string;
+  address: string;
+  neighborhood: string;
+  neighborhoodSlug: string;
+  price: number;
+  status: "for-sale" | "pending" | "sold" | "coming-soon";
+  type: "house" | "condo" | "land";
+  beds: number;
+  baths: number;
+  sqft: number;
+  lot?: string;
+  year: number;
+  hero: string;
+  heroAlt: string;
+  gallery: { src: string; alt: string }[];
+  headline: string;
+  description: string[];
+  features: string[];
+  video?: VideoSource;
+  agentSlug: string;
+  featured?: boolean;
+};
+
+export const listings: Listing[] = [
+  {
+    slug: "the-terrace-on-bouldin",
+    name: "The Terrace on Bouldin",
+    address: "1811 Bouldin Avenue",
+    neighborhood: "Bouldin Creek",
+    neighborhoodSlug: "bouldin-creek",
+    price: 1895000,
+    status: "for-sale",
+    type: "house",
+    beds: 4,
+    baths: 3.5,
+    sqft: 3240,
+    lot: "0.21 acres",
+    year: 2022,
+    hero: img.modernWhite,
+    heroAlt: "White modern two-story home with a covered terrace and native landscaping",
+    gallery: [
+      { src: img.modernWhite, alt: "Front elevation at golden hour" },
+      { src: img.livingBright, alt: "Double-height living room with white oak floors" },
+      { src: img.kitchenWhite, alt: "Kitchen with a ten-foot quartz island" },
+      { src: img.bedroomCalm, alt: "Primary bedroom with a wall of windows onto the oaks" },
+      { src: img.bathMarble, alt: "Primary bath with a freestanding tub and marble" },
+      { src: img.patio, alt: "Covered rear terrace with a lounge" },
+    ],
+    headline: "Four bedrooms, three terraces and a view of the skyline from the tub.",
+    description: [
+      "Built in 2022 by a local studio that clearly likes light, the Terrace is arranged around a double-height living room that opens completely onto a covered rear terrace. A ten-foot island anchors the kitchen; the walk-in pantry is the size of a small bedroom.",
+      "Upstairs, the primary suite takes the whole west wing: a sleeping room framed by oaks, a dressing room with a window, and a bath where the tub faces downtown. Two more bedrooms share a Jack-and-Jill bath, and the fourth works as an office with its own terrace.",
+      "South Congress is a ten-minute walk. The elementary is closer. The drive downtown, on a bad day, is eight minutes.",
+    ],
+    features: [
+      "Double-height living room with 20-foot sliders",
+      "White oak floors throughout",
+      "Ten-foot quartz island and walk-in pantry",
+      "Three covered terraces, one with an outdoor kitchen",
+      "Two-car garage with EV charger",
+      "Spray foam insulation and tankless water heater",
+    ],
+    video: { provider: "youtube", id: "aqz-KE-bpKQ", poster: img.livingBright },
+    agentSlug: "marisol-reyes",
+    featured: true,
+  },
+  {
+    slug: "lakeshore-modern",
+    name: "Lakeshore Modern",
+    address: "4406 Island Cove",
+    neighborhood: "Westlake Hills",
+    neighborhoodSlug: "westlake-hills",
+    price: 4250000,
+    status: "for-sale",
+    type: "house",
+    beds: 5,
+    baths: 5,
+    sqft: 5100,
+    lot: "0.68 acres",
+    year: 2019,
+    hero: img.glassHouse,
+    heroAlt: "Glass and stone modern home on a wooded hillside above the lake",
+    gallery: [
+      { src: img.glassHouse, alt: "Rear elevation with full-height glass toward the lake" },
+      { src: img.poolTwilight, alt: "Infinity pool at twilight" },
+      { src: img.livingStone, alt: "Living room with a limestone fireplace wall" },
+      { src: img.kitchenDark, alt: "Kitchen with dark walnut cabinetry and a stone island" },
+      { src: img.bedroomSuite, alt: "Primary suite with a private balcony" },
+      { src: img.bathTub, alt: "Spa bath with a soaking tub and canyon views" },
+    ],
+    headline: "Glass, limestone and a hundred feet of Lake Austin light.",
+    description: [
+      "Set on the quiet side of a Westlake cove, Lakeshore Modern was designed to disappear into its hillside and let the water do the talking. Every principal room faces the lake through full-height glass, and a limestone fireplace wall runs the length of the living room.",
+      "The kitchen is walnut and stone, with a scullery behind it for the real cooking. Five bedrooms, each with its own bath, are split across two wings so guests and family can keep different hours. The primary suite has its own balcony, a coffee bar and a bath that looks straight down the canyon.",
+      "Outside, an infinity pool edges the terrace and a private path drops to a shared dock. Eanes ISD; fourteen minutes to downtown.",
+    ],
+    features: [
+      "Full-height glass on every principal room",
+      "Infinity pool and terrace with lake views",
+      "Scullery kitchen and wine room",
+      "Five en-suite bedrooms across two wings",
+      "Private path to a shared boat dock",
+      "Whole-home automation and backup generator",
+    ],
+    video: { provider: "vimeo", id: "22439234", poster: img.poolTwilight },
+    agentSlug: "theo-lindqvist",
+    featured: true,
+  },
+  {
+    slug: "clarksville-cottage",
+    name: "Clarksville Cottage",
+    address: "1607 Waterston Avenue",
+    neighborhood: "Clarksville",
+    neighborhoodSlug: "clarksville",
+    price: 1275000,
+    status: "pending",
+    type: "house",
+    beds: 3,
+    baths: 2,
+    sqft: 1980,
+    lot: "0.14 acres",
+    year: 1926,
+    hero: img.cottage,
+    heroAlt: "White 1920s cottage with a picket fence and a front garden",
+    gallery: [
+      { src: img.cottage, alt: "Street view of the cottage in spring" },
+      { src: img.livingWarm, alt: "Living room with original long-leaf pine floors" },
+      { src: img.kitchenWood, alt: "Renovated kitchen with oak cabinets and a farmhouse sink" },
+      { src: img.bedroomLinen, alt: "Bedroom with linen curtains and morning light" },
+      { src: img.study, alt: "Sunroom converted into a study" },
+    ],
+    headline: "A 1926 cottage that was restored, not replaced.",
+    description: [
+      "The last owners spent three years and a great deal of patience bringing this cottage back: long-leaf pine floors refinished rather than swapped, original windows reglazed, and a kitchen rebuilt in white oak that looks as if it had always been there.",
+      "Three bedrooms sit along a central hall; the sunroom at the back became a study with a view of the fig tree. The garden is small, fenced and absurdly productive.",
+      "Clarksville is five minutes from the Capitol and feels like a village. Under contract, but we are accepting backup offers.",
+    ],
+    features: [
+      "Original long-leaf pine floors, refinished",
+      "White oak kitchen with soapstone counters",
+      "Reglazed original windows",
+      "Sunroom study with garden views",
+      "New roof, plumbing and electrical (2023)",
+      "Detached studio with power and water",
+    ],
+    agentSlug: "marisol-reyes",
+  },
+  {
+    slug: "mueller-courtyard-home",
+    name: "Mueller Courtyard Home",
+    address: "2115 Antone Street",
+    neighborhood: "Mueller",
+    neighborhoodSlug: "mueller",
+    price: 865000,
+    status: "for-sale",
+    type: "house",
+    beds: 3,
+    baths: 2.5,
+    sqft: 2110,
+    lot: "0.09 acres",
+    year: 2016,
+    hero: img.townhouse,
+    heroAlt: "Contemporary townhome with a front porch on a tree-lined Mueller street",
+    gallery: [
+      { src: img.townhouse, alt: "Front porch facing the pocket park" },
+      { src: img.livingPlants, alt: "Open living room with plants and a courtyard view" },
+      { src: img.kitchenIsland, alt: "Kitchen with a marble island and open shelving" },
+      { src: img.bedroomBoho, alt: "Guest bedroom with a woven headboard" },
+      { src: img.courtyard, alt: "Private courtyard with a plunge pool" },
+    ],
+    headline: "A porch on the park, a courtyard in the middle, and the market on foot.",
+    description: [
+      "This is the Mueller plan everyone asks for: a front porch across from a pocket park, an open first floor wrapped around a private courtyard, and three bedrooms upstairs with a flex loft between them.",
+      "The kitchen was refreshed in 2024 with a marble island, open oak shelving and a gas range. Solar panels cover most of the electric bill; the two-car garage opens onto a quiet alley.",
+      "Walk to the farmers market on Sunday, loop the lake on Monday, and be downtown in twelve minutes any day.",
+    ],
+    features: [
+      "Front porch facing a pocket park",
+      "Private central courtyard",
+      "Refreshed kitchen with marble island (2024)",
+      "Upstairs loft between bedrooms",
+      "Solar panels, 6.2 kW",
+      "Alley-loaded two-car garage",
+    ],
+    video: { provider: "file", src: "/video/tour.mp4", poster: img.livingPlants },
+    agentSlug: "priya-anand",
+    featured: true,
+  },
+  {
+    slug: "travis-heights-bungalow",
+    name: "Travis Heights Bungalow",
+    address: "1213 Alta Vista Avenue",
+    neighborhood: "Travis Heights",
+    neighborhoodSlug: "travis-heights",
+    price: 1450000,
+    status: "for-sale",
+    type: "house",
+    beds: 3,
+    baths: 2,
+    sqft: 2050,
+    lot: "0.19 acres",
+    year: 1938,
+    hero: img.bungalow,
+    heroAlt: "Blue craftsman bungalow with a wide porch on a hillside street",
+    gallery: [
+      { src: img.bungalow, alt: "The bungalow from the street" },
+      { src: img.livingSofa, alt: "Living room with built-in shelves and a bay window" },
+      { src: img.kitchenGreen, alt: "Kitchen in sage green with brass fixtures" },
+      { src: img.bedroomWood, alt: "Primary bedroom with a wood accent wall" },
+      { src: img.porchHouse, alt: "Deep front porch with a swing" },
+    ],
+    headline: "A 1938 bungalow with a porch swing and Stacy Park at the end of the street.",
+    description: [
+      "Some bungalows have been remodeled into anonymity. This one kept its bones: the bay window, the built-ins, the porch that runs the full width of the house. The kitchen went sage green with brass in 2022 and looks like it belongs.",
+      "Three bedrooms, two baths, a screened back porch and a lot that rolls down toward the creek. Stacy Park, its spring-fed pool and the Blunn Creek trail are at the end of the block.",
+      "Rainey Street and the lake trail are a short bike ride. Downtown is six minutes.",
+    ],
+    features: [
+      "Full-width front porch with swing",
+      "Original built-ins and bay window",
+      "Sage green kitchen with brass fixtures (2022)",
+      "Screened back porch",
+      "Sloping lot with creek-side trees",
+      "Steps to Stacy Park and Big Stacy Pool",
+    ],
+    agentSlug: "marisol-reyes",
+  },
+  {
+    slug: "east-side-loft",
+    name: "East Side Loft",
+    address: "1300 East 5th Street, Unit 4B",
+    neighborhood: "East Austin",
+    neighborhoodSlug: "east-austin",
+    price: 689000,
+    status: "for-sale",
+    type: "condo",
+    beds: 2,
+    baths: 2,
+    sqft: 1420,
+    year: 2018,
+    hero: img.loft,
+    heroAlt: "Industrial loft with tall windows, exposed brick and concrete floors",
+    gallery: [
+      { src: img.loft, alt: "Living area with twelve-foot windows" },
+      { src: img.livingLoft, alt: "Open kitchen and dining with concrete floors" },
+      { src: img.bedroomGray, alt: "Bedroom behind a steel and glass partition" },
+      { src: img.bathWhite, alt: "White tiled bath with a walk-in shower" },
+      { src: img.austinSkyline, alt: "Skyline view from the rooftop deck" },
+    ],
+    headline: "Twelve-foot windows, a rooftop with the skyline, and East 5th at the door.",
+    description: [
+      "Corner unit on the top floor of a small brick building, with twelve-foot windows on two sides and concrete floors that stay cool in August. The second bedroom sits behind a steel and glass partition and makes a very good office.",
+      "The building has eight units, a shared rooftop deck facing downtown, and secure parking for two. HOA dues are low because there is nothing in the building that needs a committee.",
+      "Coffee, breweries, galleries and the bike lane to downtown are all on this block.",
+    ],
+    features: [
+      "Top-floor corner unit with windows on two sides",
+      "Twelve-foot ceilings and polished concrete",
+      "Steel and glass bedroom partition",
+      "Shared rooftop deck with skyline views",
+      "Two assigned garage spaces",
+      "Low HOA, eight-unit building",
+    ],
+    agentSlug: "priya-anand",
+  },
+  {
+    slug: "hill-country-retreat",
+    name: "Hill Country Retreat",
+    address: "880 Bell Springs Road",
+    neighborhood: "Dripping Springs",
+    neighborhoodSlug: "hill-country",
+    price: 2650000,
+    status: "for-sale",
+    type: "house",
+    beds: 4,
+    baths: 4,
+    sqft: 4300,
+    lot: "5.2 acres",
+    year: 2020,
+    hero: img.hillside,
+    heroAlt: "Limestone and steel ranch house on a hillside with oak trees",
+    gallery: [
+      { src: img.hillside, alt: "The house from the lower pasture" },
+      { src: img.livingBeam, alt: "Great room with reclaimed beams and a stone fireplace" },
+      { src: img.kitchenOak, alt: "Kitchen with white oak cabinets and a range hood in steel" },
+      { src: img.bedroomMinimal, alt: "Primary bedroom opening onto the porch" },
+      { src: img.hillCountry, alt: "Sunset over the western oaks" },
+      { src: img.creek, alt: "Spring-fed creek at the property line" },
+    ],
+    headline: "Five acres, a spring-fed creek and a great room built for weather.",
+    description: [
+      "The house sits at the top of the property so the porch takes the whole view: five acres of oaks stepping down to a creek that runs most of the year. Limestone, steel and a standing-seam roof, built in 2020 to take a hailstorm without noticing.",
+      "Inside, a great room with reclaimed beams and a stone fireplace opens to a white oak kitchen. Four bedrooms are split into a family wing and a guest wing, each with a porch. A detached barn holds a workshop and a studio apartment.",
+      "Well, rainwater collection and fiber internet. Dripping Springs is ten minutes; downtown Austin forty.",
+    ],
+    features: [
+      "5.2 acres with a spring-fed creek",
+      "Great room with reclaimed beams and stone fireplace",
+      "White oak kitchen with a scullery",
+      "Wrap-around porch with western views",
+      "Barn with workshop and studio apartment",
+      "Well, 20,000-gallon rainwater system, fiber internet",
+    ],
+    video: { provider: "youtube", id: "LXb3EKWsInQ", poster: img.hillCountry },
+    agentSlug: "jordan-blake",
+    featured: true,
+  },
+  {
+    slug: "tarrytown-colonial",
+    name: "Tarrytown Colonial",
+    address: "2708 Pemberton Drive",
+    neighborhood: "Tarrytown",
+    neighborhoodSlug: "tarrytown",
+    price: 3100000,
+    status: "sold",
+    type: "house",
+    beds: 5,
+    baths: 4.5,
+    sqft: 4600,
+    lot: "0.42 acres",
+    year: 1954,
+    hero: img.brickColonial,
+    heroAlt: "Brick colonial home with black shutters under mature oaks",
+    gallery: [
+      { src: img.brickColonial, alt: "The colonial from Pemberton Drive" },
+      { src: img.livingFire, alt: "Formal living room with a marble fireplace" },
+      { src: img.kitchenMarble, alt: "Kitchen with marble counters and a breakfast bay" },
+      { src: img.dining, alt: "Dining room with garden views" },
+      { src: img.poolHouse, alt: "Pool and pool house in the back garden" },
+    ],
+    headline: "A 1954 colonial under the Pemberton oaks, sold in eleven days.",
+    description: [
+      "We represented the sellers of this five-bedroom colonial, a house that had been in one family for thirty-one years. The brief was simple: honor the house, find a buyer who would keep it, and do it before the school year.",
+      "Eleven days, four offers, and a closing price four percent above ask. The new owners are keeping the pool house exactly as it is.",
+      "If you have a Tarrytown home with a similar story, we would like to hear it.",
+    ],
+    features: [
+      "Five bedrooms on a 0.42-acre corner lot",
+      "Marble fireplaces in living and library",
+      "Kitchen with breakfast bay onto the garden",
+      "Pool and pool house with full bath",
+      "Two-car garage and porte-cochère",
+      "Casis Elementary zone",
+    ],
+    agentSlug: "theo-lindqvist",
+  },
+];
+
+export const getListing = (slug: string) => listings.find((l) => l.slug === slug);
+export const featuredListings = listings.filter((l) => l.featured);
+
+export const formatPrice = (n: number) =>
+  new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(n);
+
+export const statusLabel: Record<Listing["status"], string> = {
+  "for-sale": "For sale",
+  pending: "Under contract",
+  sold: "Sold",
+  "coming-soon": "Coming soon",
+};
