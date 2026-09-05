@@ -28,6 +28,36 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "airbnb-and-short-term-rentals-in-austin",
+    title: "Airbnb, Vrbo and the short-term rental question in Austin",
+    excerpt:
+      "The listings look like easy money and the rules look like fine print. Here is how we help clients tell the difference before they buy.",
+    category: "Buying",
+    date: "2026-09-05",
+    readingTime: "7 min read",
+    image: img.bungalow,
+    alt: "A furnished Austin bungalow with lamps lit in the front windows at dusk",
+    authorSlug: "theo-lindqvist",
+    blocks: [
+      { type: "p", text: "A few times a month someone asks us to find a house they can put on Airbnb. It is a fair question, and a good property in the right spot can earn well. It is also the one purchase where the pretty photos matter least and the paperwork matters most. Before we send a single listing, we walk clients through the same four things, in the same order." },
+      { type: "h2", id: "the-rules-come-first", text: "The rules come before the returns" },
+      { type: "p", text: "Austin licenses short-term rentals, and the rules for a home you do not live in are far tighter than the rules for a spare room in the house you occupy. Zoning, deed restrictions and HOA covenants can each override the other, and the city has been through several rounds of litigation, so the rule that was true two years ago may not be true for the address you are about to buy. We never treat expected rental income as real until the current rule for that exact property is confirmed with the city. A house that cannot be legally rented by the night is not a short-term rental. It is just a house with a hopeful spreadsheet attached." },
+      { type: "h2", id: "the-platforms", text: "Airbnb is not the only door" },
+      { type: "p", text: "Most people say Airbnb the way they say Kleenex, meaning the whole category. In practice the platform you lean on changes the kind of guest you get and how much of your calendar fills, so it is worth knowing the differences before you buy for one and end up on another." },
+      { type: "ul", items: ["Airbnb: the largest audience and the most casual traveler, strong for weekends, events and stays of a few nights.", "Vrbo: skews toward families and whole-home stays, often longer bookings and fewer, larger groups.", "Furnished Finder and mid-term platforms: traveling nurses, relocations and corporate stays of a month or more, lower nightly rates but far less turnover.", "Direct booking: your own site and repeat guests, no platform fee, but you carry the marketing and the screening yourself."] },
+      { type: "h2", id: "the-math", text: "The math nobody puts in the listing" },
+      { type: "p", text: "Gross nightly rate is the number people quote at dinner. Net is the number that pays the mortgage. Between the two sit cleaning and turnover, a management cut of roughly twenty to thirty percent if you are not doing it yourself, furnishing and its slow replacement, higher insurance, and the vacancy that fills the calendar between the good weekends. Austin helps here more than most cities, because the events calendar is generous: the festivals in spring and fall, the football Saturdays, the race weekend in the fall. Those weeks carry a lot of the year. The quiet stretch in the deep summer and after the holidays does not." },
+      { type: "image", src: img.livingWarm, alt: "A warmly lit living room set up for guests with fresh linens and a stocked shelf", caption: "A guest-ready home is a small hospitality business, not a house that happens to be empty. Budget for it that way." },
+      { type: "h3", id: "the-neighbor-question", text: "The neighbor question" },
+      { type: "p", text: "Even where the city allows it, the street may not forgive it. A block that turns over every three nights feels different to the people who live there full time, and an HOA that permits short-term rentals today can vote to restrict them next spring. We ask clients to picture the house full of strangers on a Saturday night and to be honest about whether that is the neighborhood they want to own a piece of. The best short-term rentals we have sold were the ones the neighbors barely noticed." },
+      { type: "h2", id: "the-quieter-alternative", text: "The quieter alternative" },
+      { type: "p", text: "For a lot of buyers the mid-term rental is the better business and nobody told them. A furnished home rented by the month to a relocating family or a traveling professional earns less per night than a festival weekend, but it fills more of the year, wears out far slower, and sidesteps most of the nightly-rental rules entirely. It is less romantic than a full calendar of five-star reviews. It is also a great deal easier to sleep through." },
+      { type: "quote", text: "The most profitable short-term rental is the one that is actually allowed, and the second most profitable is the one you did not have to check on at midnight.", cite: "Theo Lindqvist" },
+      { type: "h2", id: "what-we-tell-clients", text: "What we tell clients before they buy" },
+      { type: "p", text: "Buy the house as if the rental income might disappear, because a rule change or an HOA vote can make it disappear. If the numbers still work as a long-term hold, you have a good property with an upside. If they only work at full nightly occupancy under today's rules, you are betting the purchase on the one variable you control least. We are happy to help you run either bet. We would just rather you make it with your eyes open." },
+    ],
+  },
+  {
     slug: "how-to-read-an-austin-listing",
     title: "How to read an Austin listing like an agent",
     excerpt:
