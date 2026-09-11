@@ -175,6 +175,42 @@ export default async function ListingPage({ params }: PageProps<"/listings/[slug
         </div>
       </section>
 
+      {/* Formulario de contacto a pie de cada propiedad */}
+      <section aria-labelledby="listing-contact" className="bg-ink text-bone">
+        <div className="mx-auto grid w-full max-w-[100rem] gap-10 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-2 lg:gap-20">
+          <div className="max-w-xl">
+            <p className="eyebrow text-amber">Get in touch</p>
+            <h2 id="listing-contact" className="font-display mt-3 text-balance text-[2.2rem] font-medium leading-[1.04] sm:text-[3rem]">
+              {l.status === "sold" ? "Thinking of selling a home like this?" : `Interested in ${l.name}?`}
+            </h2>
+            <p className="mt-5 max-w-md text-[1.05rem] leading-relaxed text-bone/75">
+              Send a note and {agent.name.split(" ")[0]} will get back to you personally, usually within one business day. No call center, no pressure.
+            </p>
+            <div className="mt-8 space-y-1 text-[0.95rem] text-bone/70">
+              <p>{agent.name}, {agent.role}</p>
+              <p>
+                <a href={`tel:${agent.phone.replace(/[^0-9+]/g, "")}`} className="hover:text-bone">{agent.phone}</a>
+                {" · "}
+                <a href={`mailto:${agent.email}`} className="hover:text-bone">{agent.email}</a>
+              </p>
+            </div>
+          </div>
+          <div className="lg:pt-2">
+            <ContactForm
+              tone="dark"
+              submitLabel={l.status === "sold" ? "Talk about selling" : "Request a showing"}
+              fields={[
+                { name: "name", label: "Full name", required: true, autoComplete: "name" },
+                { name: "email", label: "Email", type: "email", required: true, autoComplete: "email" },
+                { name: "phone", label: "Phone", type: "tel", autoComplete: "tel" },
+                { name: "preferred", label: "Preferred contact", type: "select", options: ["Email", "Phone", "Text"] },
+                { name: "message", label: l.status === "sold" ? "Tell us about your home" : `Ask about ${l.name}`, type: "textarea", full: true, required: true },
+              ]}
+            />
+          </div>
+        </div>
+      </section>
+
       <section aria-labelledby="more-homes" className="bg-paper-2 py-20 sm:py-24">
         <div className="mx-auto w-full max-w-[100rem] px-5 sm:px-8">
           <div className="flex flex-wrap items-end justify-between gap-6">
