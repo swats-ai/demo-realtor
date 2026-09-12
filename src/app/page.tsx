@@ -222,8 +222,8 @@ export default function HomePage() {
       <NewsletterBand
         title="One letter a month. What sold, what did not, and why."
         highlight="No listings spam. Just the market, explained by people who work in it."
-        image={img.theo}
-        imageAlt="Theo Lindqvist reviewing a floor plan"
+        image="/team/theo-lindqvist.jpg"
+        imageAlt="Portrait of Theo Lindqvist, partner for luxury and lakefront homes at Sabine & Oak"
         note="Unsubscribe any time. We never share your address."
       >
         <p>

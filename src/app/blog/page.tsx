@@ -85,8 +85,8 @@ export default function BlogPage() {
       <NewsletterBand
         title="Get the Journal by email."
         highlight="One letter a month, written by Theo and edited by Marisol."
-        image={img.theo}
-        imageAlt="Theo Lindqvist reviewing a floor plan"
+        image="/team/theo-lindqvist.jpg"
+        imageAlt="Portrait of Theo Lindqvist, partner for luxury and lakefront homes at Sabine & Oak"
         note="Unsubscribe any time. We never share your address."
       >
         <p>What sold, what did not, what the rates did and what we think comes next.</p>

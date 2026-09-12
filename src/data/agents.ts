@@ -27,7 +27,7 @@ export const agents: Agent[] = [
     name: "Theo Lindqvist",
     role: "Partner, luxury and lakefront",
     bio: "A former architect, Theo reads a floor plan the way most of us read a menu. He represents most of our Westlake and Lake Austin sellers and has a quiet gift for finding the buyer nobody else knew was looking.",
-    image: img.theo,
+    image: "/team/theo-lindqvist.jpg",
     phone: "(512) 555-0152",
     email: "theo@sabineandoak.com",
     focus: ["Westlake", "Lake Austin", "New construction"],
