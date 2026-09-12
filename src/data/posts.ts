@@ -28,6 +28,36 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "rental-property-loans-options-and-strategies",
+    title: "Rental property loans: your options, and the strategy behind each",
+    excerpt:
+      "The right loan is not the cheapest one on paper. It is the one that matches how you plan to hold the property.",
+    category: "Buying",
+    date: "2026-09-12",
+    readingTime: "7 min read",
+    image: img.townhouse,
+    alt: "A row of Austin townhomes under a clear afternoon sky",
+    authorSlug: "theo-lindqvist",
+    blocks: [
+      { type: "p", text: "When a client tells us they want to buy a rental, the first conversation is never about the house. It is about the money behind it. The loan you choose shapes how much cash you bring, how the property has to perform to break even, and how quickly you can buy the next one. Get it right and a modest house becomes the start of a portfolio. Get it wrong and a good property sits with the wrong debt on it for a decade. Here is the menu we walk investors through, and how we match each option to a plan." },
+      { type: "h2", id: "the-loan-shapes-the-deal", text: "The loan shapes the deal, not the other way around" },
+      { type: "p", text: "A rental is two purchases at once: the property and the financing. Buyers spend weeks on the first and an afternoon on the second, which is backwards. The terms of the loan decide whether a house that rents for a given number is a comfortable hold or a monthly worry. Before we send listings, we ask what the exit looks like, how many properties the client hopes to own, and whether the goal is monthly income or long patient equity. The answer points to a different loan every time." },
+      { type: "h2", id: "the-menu", text: "The financing menu, from familiar to creative" },
+      { type: "p", text: "Most investors only know the first item on this list, and it is often not the right one for them. Rates and terms move constantly and vary by lender, so treat these as categories to ask about, not quotes to count on. Confirm the current numbers with a lender before you underwrite a deal on them." },
+      { type: "ul", items: ["Conventional investment mortgage: the familiar path, backed by Fannie Mae or Freddie Mac. Expect a larger down payment than an owner-occupied loan and a rate a bit higher, and expect the lender to scrutinize your personal income and debt.", "DSCR loan: underwritten on the property's rent rather than your paycheck, using a debt-service coverage ratio. It cares little about your day job, which makes it faster for self-employed buyers, and it usually costs a little more for that convenience.", "Portfolio loan from a local bank or credit union: kept on the lender's own books, so the terms are negotiable and the relationship matters. Often the best tool once you own several properties.", "Cash-out refinance or a HELOC on a home you already own: turns existing equity into the down payment on the next one. Powerful and cheap, but it puts your first property's equity behind the second one's performance.", "Owner-occupied financing on a small multifamily: the lowest down payment of all, if you are willing to live in one unit."] },
+      { type: "h3", id: "house-hacking", text: "The owner-occupied shortcut" },
+      { type: "p", text: "The single cheapest way into a rental is to live in it first. Buy a duplex or a house with a garage apartment, occupy one side, and finance it as your home rather than as an investment. The down payment requirement drops sharply and the rate is the friendlier owner-occupied number, while the tenant next door covers much of the note. After a year, many buyers move on and keep the property as a full rental. It is the slowest way to build a portfolio and the least expensive way to start one, and for a first-time investor it is often the one we recommend." },
+      { type: "image", src: img.documents, alt: "Loan paperwork, a calculator and a set of keys on a table", caption: "The house takes weeks to choose. The financing takes an afternoon and decides everything. Spend the afternoon well." },
+      { type: "h2", id: "the-numbers-that-decide", text: "The numbers a lender actually underwrites" },
+      { type: "p", text: "Every one of these loans comes down to a handful of figures. Debt-service coverage ratio, which is the rent divided by the loan payment, tells a lender whether the house pays for itself. Cash reserves, usually several months of payments per property, prove you can survive a vacancy. Your debt-to-income ratio still matters on conventional loans even when the rent looks strong. Knowing which number your chosen loan leans on tells you where to shore up your file before you apply, and it is the difference between an approval in a week and a scramble during the option period." },
+      { type: "h2", id: "matching-loan-to-strategy", text: "Matching the loan to the strategy" },
+      { type: "p", text: "A buy-and-hold investor who wants a house to rent for twenty years should reach for the cheapest long fixed rate they can get and stop optimizing. A buyer who plans to renovate, raise the rent and refinance is better served by short-term money now and a DSCR or portfolio refinance later, once the higher rent proves out. Someone chasing monthly income from a furnished mid-term rental should underwrite conservatively, because that strategy fills more of the calendar but earns less per night than the spreadsheet promises. The loan is not a commodity. It is the tool that either fits the plan or quietly fights it." },
+      { type: "quote", text: "The best rental loan is the one you can still afford in the month nobody is paying rent. Everything else is a rate you will forget by the second year.", cite: "Theo Lindqvist" },
+      { type: "h2", id: "what-we-tell-investors", text: "What we tell first-time investors" },
+      { type: "p", text: "Talk to the lender before you fall in love with the house, get the pre-approval that names a real number, and build the deal so it survives a rate you did not expect and a vacancy you did not plan. If the property works as a long-term hold at today's terms, you own an asset with room to grow. If it only works at full occupancy under the friendliest financing you were quoted, you are betting on the two things you control least. We are glad to help you run either bet, with a lender we trust and numbers we have checked twice." },
+    ],
+  },
+  {
     slug: "airbnb-and-short-term-rentals-in-austin",
     title: "Airbnb, Vrbo and the short-term rental question in Austin",
     excerpt:
