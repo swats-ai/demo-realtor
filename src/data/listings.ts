@@ -10,7 +10,8 @@ export type Listing = {
   name: string;
   address: string;
   neighborhood: string;
-  neighborhoodSlug: string;
+  /** Optional: only set when the home sits in one of our eight profiled neighborhoods. */
+  neighborhoodSlug?: string;
   price: number;
   status: "for-sale" | "pending" | "sold" | "coming-soon";
   type: "house" | "condo" | "land";
@@ -25,12 +26,62 @@ export type Listing = {
   headline: string;
   description: string[];
   features: string[];
+  /** Optional building amenities, shown as a separate block (useful for condos and towers). */
+  amenities?: string[];
   video?: VideoSource;
   agentSlug: string;
   featured?: boolean;
 };
 
 export const listings: Listing[] = [
+  {
+    slug: "sky-residence-on-west-avenue",
+    name: "Sky Residence on West Avenue",
+    address: "215 West Avenue, Unit 2904",
+    neighborhood: "Downtown",
+    price: 1395000,
+    status: "for-sale",
+    type: "condo",
+    beds: 2,
+    baths: 2.5,
+    sqft: 1620,
+    year: 2020,
+    hero: img.livingArch,
+    heroAlt: "High-floor living room wrapped in floor-to-ceiling glass above the downtown Austin skyline",
+    gallery: [
+      { src: img.livingArch, alt: "Living room wrapped in floor-to-ceiling glass on two sides" },
+      { src: img.kitchenDark, alt: "Kitchen with integrated appliances and a stone island" },
+      { src: img.livingCorner, alt: "Corner living space open to the dining room" },
+      { src: img.bedroomSuite, alt: "Primary suite with a wall of glass over the city" },
+      { src: img.bathMarble, alt: "Primary bath in marble with a freestanding tub" },
+      { src: img.austinSkyline, alt: "Downtown and Lady Bird Lake from the residence at dusk" },
+    ],
+    headline: "A corner on the twenty-ninth floor, where the glass does all the talking.",
+    description: [
+      "This is the downtown condo people describe when they say they are ready to trade the yard for the skyline. A corner residence on the twenty-ninth floor, wrapped on two sides in floor-to-ceiling glass, with Lady Bird Lake to the south and the Capitol lit up to the north.",
+      "Inside, one open room holds the kitchen, dining and living, finished in wide-plank white oak and stone. The kitchen keeps its appliances behind cabinetry so the island stays clear for the view. Two bedrooms sit at opposite ends for quiet, the primary with a marble spa bath and a walk-in closet, and a glass-walled study off the entry works as a third room or a home office.",
+      "We are honest that downtown is not one of the eight neighborhoods we know house by house. It is, though, one of the simplest addresses in Austin to live well: the lake trail at the door, the music and the restaurants on foot, and a parking space you can forget about for a week at a time.",
+    ],
+    features: [
+      "Corner residence on the 29th floor with two walls of glass",
+      "Floor-to-ceiling windows framing the lake and the Capitol",
+      "Open kitchen with integrated appliances and a stone island",
+      "Primary suite with a marble spa bath and walk-in closet",
+      "Glass-walled study off the entry, ready as a third room",
+      "Wide-plank white oak floors and motorized shades throughout",
+    ],
+    amenities: [
+      "Rooftop pool deck with skyline cabanas",
+      "Fitness center and a dedicated yoga studio",
+      "24-hour concierge and controlled-access entry",
+      "Owner's lounge with a catering kitchen",
+      "Furnished guest suite for visitors",
+      "Conference room and coworking nook",
+      "Dog park and pet spa on site",
+      "Two assigned garage spaces with EV charging",
+    ],
+    agentSlug: "theo-lindqvist",
+  },
   {
     slug: "the-terrace-on-bouldin",
     name: "The Terrace on Bouldin",

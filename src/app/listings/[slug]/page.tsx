@@ -33,7 +33,7 @@ export default async function ListingPage({ params }: PageProps<"/listings/[slug
   const l = getListing(slug);
   if (!l) notFound();
   const agent = getAgent(l.agentSlug)!;
-  const hood = getNeighborhood(l.neighborhoodSlug);
+  const hood = l.neighborhoodSlug ? getNeighborhood(l.neighborhoodSlug) : undefined;
   const related = listings.filter((x) => x.slug !== l.slug && x.status !== "sold").slice(0, 3);
 
   const facts: { label: string; value: string }[] = [
@@ -56,7 +56,13 @@ export default async function ListingPage({ params }: PageProps<"/listings/[slug
             <ol className="flex flex-wrap gap-2">
               <li><Link href="/listings" className="hover:text-bone">Homes</Link></li>
               <li aria-hidden>/</li>
-              <li><Link href={`/neighborhoods#${l.neighborhoodSlug}`} className="hover:text-bone">{l.neighborhood}</Link></li>
+              <li>
+                {l.neighborhoodSlug ? (
+                  <Link href={`/neighborhoods#${l.neighborhoodSlug}`} className="hover:text-bone">{l.neighborhood}</Link>
+                ) : (
+                  <span>{l.neighborhood}</span>
+                )}
+              </li>
             </ol>
           </nav>
           <div className="mt-6 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
@@ -123,6 +129,20 @@ export default async function ListingPage({ params }: PageProps<"/listings/[slug
                 </li>
               ))}
             </ul>
+
+            {l.amenities?.length ? (
+              <>
+                <h2 className="font-display mt-14 text-[1.8rem] font-medium text-ink">Building amenities</h2>
+                <ul className="mt-5 grid gap-x-8 gap-y-3 sm:grid-cols-2">
+                  {l.amenities.map((a) => (
+                    <li key={a} className="flex items-start gap-3 text-[1.02rem] text-ink-soft">
+                      <span aria-hidden className="mt-2.5 size-1.5 shrink-0 rounded-full bg-amber-deep" />
+                      {a}
+                    </li>
+                  ))}
+                </ul>
+              </>
+            ) : null}
 
             {l.video ? (
               <div className="mt-14">
