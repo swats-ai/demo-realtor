@@ -21,14 +21,24 @@ import { homeGallery } from "@/data/galleries";
 import { posts, formatDate } from "@/data/posts";
 
 export default function HomePage() {
-  const slides = featuredListings.map((l) => ({
-    image: l.hero,
-    eyebrow: `${l.neighborhood}, ${formatPrice(l.price)}`,
-    title: l.headline,
-    text: l.description[0].split(". ").slice(0, 1).join(". ") + ".",
-    navLabel: l.name,
-    href: `/listings/${l.slug}`,
-  }));
+  const slides = [
+    ...featuredListings.map((l) => ({
+      image: l.hero,
+      eyebrow: `${l.neighborhood}, ${formatPrice(l.price)}`,
+      title: l.headline,
+      text: l.description[0].split(". ").slice(0, 1).join(". ") + ".",
+      navLabel: l.name,
+      href: `/listings/${l.slug}`,
+    })),
+    {
+      image: "/home/hero-new-construction.jpg",
+      eyebrow: "New construction, Austin",
+      title: "Brand-new brick, a two-car garage and room to grow.",
+      text: "A freshly built home on a quiet Austin street, ready for its first morning.",
+      navLabel: "New construction",
+      href: "/listings",
+    },
+  ];
 
   return (
     <>
