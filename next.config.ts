@@ -10,6 +10,15 @@ const nextConfig: NextConfig = {
     // Demo: fotos de stock de Unsplash. En un proyecto real las imágenes
     // viven en /public y esta entrada se elimina.
     remotePatterns: [{ protocol: "https", hostname: "images.unsplash.com" }],
+    minimumCacheTTL: 604800,
+  },
+  async headers() {
+    return [
+      {
+        source: "/:all*(woff2|woff|ttf|otf|eot|mp4|webm|pdf)",
+        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+      },
+    ];
   },
 };
 
