@@ -1,3 +1,4 @@
+import { CurrentYear } from "./current-year";
 import Link from "next/link";
 import { Logo } from "./logo";
 import { nav, site } from "@/lib/site";
@@ -9,7 +10,6 @@ import { neighborhoods } from "@/data/neighborhoods";
  * contacto, y una línea legal con la licencia TREC.
  */
 export function Footer() {
-  const year = new Date().getFullYear();
   return (
     <footer className="relative overflow-hidden bg-ink text-bone">
       <div aria-hidden className="grain pointer-events-none absolute inset-0 opacity-[0.12]" />
@@ -87,7 +87,7 @@ export function Footer() {
 
         <div className="mt-14 flex flex-col gap-3 border-t border-bone/10 pt-6 text-[0.82rem] text-bone/55 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {year} {site.legalName}. {site.license}. Equal Housing Opportunity.
+            © <CurrentYear /> {site.legalName}. {site.license}. Equal Housing Opportunity.
           </p>
           <p>
             <a href="https://www.trec.texas.gov/forms/consumer-protection-notice" target="_blank" rel="noopener noreferrer" className="underline-offset-4 hover:text-bone hover:underline">
