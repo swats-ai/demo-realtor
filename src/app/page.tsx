@@ -22,10 +22,11 @@ import { posts, formatDate } from "@/data/posts";
 
 export default function HomePage() {
   const slides = [
-    ...featuredListings.map((l) => ({
+    ...featuredListings.map((l, i) => ({
       image: l.hero,
       eyebrow: `${l.neighborhood}, ${formatPrice(l.price)}`,
-      title: l.headline,
+      // Hero slide 1 leads with a client-supplied brand line; the rest keep the listing headline.
+      title: i === 0 ? "The best view on the best city in the world" : l.headline,
       text: l.description[0].split(". ").slice(0, 1).join(". ") + ".",
       navLabel: l.name,
       href: `/listings/${l.slug}`,
