@@ -87,7 +87,7 @@ export default function HomePage() {
             <div className="max-w-2xl">
               <p className="eyebrow text-amber-deep">Featured this month</p>
               <h2 id="featured" className="font-display mt-3 text-balance text-[2.2rem] font-medium leading-[1.05] tracking-[-0.01em] text-ink sm:text-[3rem]">
-                Four homes we would buy ourselves.
+                Five homes we would buy ourselves.
               </h2>
             </div>
             <ArrowLink href="/listings">See all homes</ArrowLink>
